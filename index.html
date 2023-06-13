@@ -126,24 +126,17 @@
       document.getElementById("language").append(liff.getLanguage())
       document.getElementById("accessToken").append(liff.getAccessToken())
       document.getElementById("isInClient").append(liff.isInClient())
-      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
-      document.getElementById("friendship").append(liff.getFriendship().friendFlag)
-      //document.getElementById("scanCode").append(liff.scanCode())
-
       if (liff.isInClient()){
         document.getElementById("btnLogOut").style.display = "none"      
       }else{
-        // document.getElementById("btnMsg").style.display = "none"
+        document.getElementById("btnMsg").style.display = "none"
         document.getElementById("btnScanCode").style.display = "none"
         document.getElementById("btnClose").style.display= "none"
       }
-
-      //liff.sendMessages(messages);
-
     }
 
     async function main() {
-      await liff.init({ liffId: "1661354565-9y8vjbMz" })
+      await liff.init({ liffId: "1661408916-1n27nGGq" })
       // getEnvironment()
       // getUserProfile()
       // getUserContext()
