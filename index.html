@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <title>My LIFF app</title>
+  <link rel="stylesheet" href="css/style.css" media="all">
+</head>
+<body>
+  <p id="os"><b>OS:</b> </p>
+  <p id="language"><b>Language:</b> </p>
+  <p id="version"><b>Version:</b> </p>
+  <p id="isInClient"><b>isInClient:</b> </p>
+  <p id="accessToken"><b>AccessToken:</b> </p>
+  <img id="pictureUrl">
+  <p id="userId"><b>userId:</b> </p>
+  <p id="displayName"><b>displayName:</b> </p>
+  <p id="statusMessage"><b>statusMessage:</b> </p>
+  <p id="decodedIDToken"><b>email:</b> </p>
+  <p id="type"><b>type:</b> </p>
+  <p id="viewType"><b>viewType:</b> </p>
+  <p id="utouId"><b>utouId:</b> </p>
+  <p id="roomId"><b>roomId:</b> </p>
+  <p id="groupId"><b>groupId:</b> </p>
+  <p id="friendship"><b>isFriendship:</b> </p>
+  <p id="scanCode"><b>Code:</b> </p>
+  <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
+  <p id="universalLink1"><b>Universal Link:</b> </p>
+  <p id="universalLink2"><b>Universal Link with Query params:</b> </p>
+  <p><a href="liff/path/?param=9">Link to Path</a></p>
+
+  <button id="btnMsg" onclick="sendMsg()">Send Message</button>
+  <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
+  <button onclick="openWindow()">Open Window</button>
+  <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  <button id="btnClose" onclick="closed()">Close</button>
+
+  <!-- <script src="js/vconsole.min.js"></script> -->
+  <!-- <script>
+    var vConsole = new VConsole()
+    console.log("Hello World!")
+  </script> -->
+
+  <!-- <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script> -->
+  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  <script>
+    function createUniversalLink() {
+    }
+
+    async function shareMsg() {
+    }
+
+    function logOut() {
+    }
+
+    function closed() {
+    }
+
+    async function scanCode() {
+      // if (liff.scanCode) {
+      //   liff.scanCode().then((result) => {
+      //     // result = { value: "" }
+      //     alert('Message scanCode')
+      //   });
+      // }
+    }
+
+    function openWindow() {
+    }
+
+    async function getFriendship() {
+      liff.getFriendship().then((data) => {
+        if (data.friendFlag) {
+          alert('Message getFriendship')
+        }
+      });
+    }
+
+    // async function sendMsg() {
+    //   liff
+    //     .sendMessages([{ "type": "sticker", "stickerId": 446, "packageId": 1988 }])
+    //     .then(() => {
+    //       window.alert("Message has been sent");
+    //     })
+    //     .catch(e => {
+    //       window.alert(e);
+    //     });
+    // }
+
+    async function sendMsg() {
+  liff.sendMessages([
+    {
+      type: "sticker",
+      stickerId: 52002744,
+      packageId: 11537,
+    },
+  ])
+  .then(() => {
+    console.log("message sent");
+  })
+  .catch((err) => {
+    // console.log("error", err);
+    window.alert(err);
+  });
+  }
+    
+
+    async function getUserContext() {
+      const context = await liff.getContext()
+      document.getElementById("type").append(context.type)
+      document.getElementById("viewType").append(context.viewType)
+      document.getElementById("utouId").append(context.utouId)
+      document.getElementById("roomId").append(context.roomId)
+      document.getElementById("groupId").append(context.groupId)
+    }
+
+    async function getUserProfile() {
+       
+    } 
+
+    function getEnvironment() {
+   
+      document.getElementById("version").append(liff.getVersion())
+      document.getElementById("os").append(liff.getOS())
+      document.getElementById("language").append(liff.getLanguage())
+      document.getElementById("accessToken").append(liff.getAccessToken())
+      document.getElementById("isInClient").append(liff.isInClient())
+      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+      document.getElementById("friendship").append(liff.getFriendship().friendFlag)
+      //document.getElementById("scanCode").append(liff.scanCode())
+
+      if (liff.isInClient()){
+        document.getElementById("btnLogOut").style.display = "none"      
+      }else{
+        // document.getElementById("btnMsg").style.display = "none"
+        document.getElementById("btnScanCode").style.display = "none"
+        document.getElementById("btnClose").style.display= "none"
+      }
+
+      //liff.sendMessages(messages);
+
+    }
+
+    async function main() {
+      await liff.init({ liffId: "1661354565-9y8vjbMz" })
+      // getEnvironment()
+      // getUserProfile()
+      // getUserContext()
+      // getFriendship()
+      // sendMsg()
+      // createUniversalLink()
+    }
+    main()
+  </script>
+</body>
+</html>
