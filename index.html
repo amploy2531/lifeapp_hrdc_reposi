@@ -42,8 +42,7 @@
     console.log("Hello World!")
   </script> -->
 
-  <!-- <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script> -->
-  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     function createUniversalLink() {
     }
@@ -58,65 +57,28 @@
     }
 
     async function scanCode() {
-      // if (liff.scanCode) {
-      //   liff.scanCode().then((result) => {
-      //     // result = { value: "" }
-      //     alert('Message scanCode')
-      //   });
-      // }
     }
 
     function openWindow() {
     }
 
     async function getFriendship() {
-      liff.getFriendship().then((data) => {
-        if (data.friendFlag) {
-          alert('Message getFriendship')
-        }
-      });
     }
 
-    // async function sendMsg() {
-    //   liff
-    //     .sendMessages([{ "type": "sticker", "stickerId": 446, "packageId": 1988 }])
-    //     .then(() => {
-    //       window.alert("Message has been sent");
-    //     })
-    //     .catch(e => {
-    //       window.alert(e);
-    //     });
-    // }
-
     async function sendMsg() {
-  liff.sendMessages([
-    {
-      type: "sticker",
-      stickerId: 52002744,
-      packageId: 11537,
-    },
-  ])
-  .then(() => {
-    console.log("message sent");
-  })
-  .catch((err) => {
-    // console.log("error", err);
-    window.alert(err);
-  });
-  }
-    
+    }
 
-    async function getUserContext() {
-      const context = await liff.getContext()
-      document.getElementById("type").append(context.type)
-      document.getElementById("viewType").append(context.viewType)
-      document.getElementById("utouId").append(context.utouId)
-      document.getElementById("roomId").append(context.roomId)
-      document.getElementById("groupId").append(context.groupId)
+    function getContext() {
     }
 
     async function getUserProfile() {
-       
+      const profile = await liff.getProfile()
+      document.getElementById("pictureUrl").src = profile.pictureUrl
+      document.getElementById("userId").append(profile.userId)
+      document.getElementById("displayName").append(profile.displayName)
+      document.getElementById("statusMessage").append(profile.statusMessage)
+      document.getElementById("decodedIDToken").append(liff.getdecodedIDToken().email)
+           
     } 
 
     function getEnvironment() {
@@ -136,12 +98,11 @@
     }
 
     async function main() {
-      await liff.init({ liffId: "1661408916-1n27nGGq" })
-      // getEnvironment()
-      // getUserProfile()
-      // getUserContext()
+          await liff.init({ liffId: "1661289088-ky474y1w" })
+      getEnvironment()
+      getUserProfile()
+      // getContext()
       // getFriendship()
-      // sendMsg()
       // createUniversalLink()
     }
     main()
