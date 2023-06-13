@@ -63,11 +63,22 @@
     }
 
     async function getFriendship() {
+	
     }
 
     async function sendMsg() {
+	if (liff.getContext().type !== "none"){
+	await liff.sendMessages([
+	{
+	 "type": "sticker",
+	 "stickerId": 1,
+	 "packageId": 1
+	}
+	])
+	alert("Message sent")
+	}
     }
-
+	
     function getContext() {
     }
 
@@ -101,7 +112,7 @@
           await liff.init({ liffId: "1661354565-9y8vjbMz" })
       getEnvironment()
       getUserProfile()
-      // getContext()
+      getContext()
       // getFriendship()
       // createUniversalLink()
     }
